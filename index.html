@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZOU – La ville t'attend</title>
+  <link rel="stylesheet" href="./css/styles.css"/>
+  <link rel="stylesheet" href="./css/screens.css"/>
+</head>
+<body>
+<div class="phone">
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 1 – ACCUEIL
+  ══════════════════════════════════════════════════════ -->
+  <div id="accueil" class="screen">
+    <div class="acc-inner">
+      <div class="acc-hero">
+        <div class="acc-logo-wrap">
+          <img src="./images/zou_logo_large.png" alt="ZOU"/>
+        </div>
+        <p class="acc-tagline">LA VILLE T'ATTEND !</p>
+      </div>
+      <div class="acc-actions">
+        <button class="btn btn-primary" onclick="Router.go('connexion')">
+          Se connecter / S'inscrire
+        </button>
+        <button class="btn btn-white" style="margin-top:12px" onclick="Router.go('opener')">
+          Continuez en tant que Guest
+        </button>
+        <div class="social-section">
+          <p class="social-lbl">Se connecter / S'inscrire</p>
+          <div class="social-row">
+            <button class="social-btn"><img src="images/instagram_logo.png" alt="Instagram"/></button>
+            <button class="social-btn" style="padding:12px"><img src="images/apple_logo.png" alt="Apple"/></button>
+            <button class="social-btn"><img src="images/google_logo.png" alt="Google"/></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 2 – CONNEXION
+  ══════════════════════════════════════════════════════ -->
+  <div id="connexion" class="screen">
+    <div class="cx-blob cx-blob-tl"></div>
+    <div class="cx-blob cx-blob-br"></div>
+    <div class="cx-inner">
+      <h2 class="cx-greeting">Salut Toi ! 👋</h2>
+      <div class="cx-form">
+        <div>
+          <label class="lbl" for="inp-email">Email</label>
+          <input class="inp" id="inp-email" type="email" placeholder="exemple@gmail.com"/>
+        </div>
+        <div>
+          <label class="lbl" for="inp-pwd">Mot de passe</label>
+          <div class="inp-wrap">
+            <input class="inp" id="inp-pwd" type="password" placeholder="motdepasse"/>
+            <button class="eye-btn" id="eye-btn" onclick="togglePwd()">👁</button>
+          </div>
+          <button class="cx-forgot">Mot de passe oublié</button>
+        </div>
+        <div class="chk-row">
+          <input type="checkbox" id="stay-ck" checked/>
+          <label for="stay-ck">Restez Connecter</label>
+        </div>
+        <button class="btn btn-primary" style="margin-top:8px" onclick="handleLogin()">
+          Se connecter / S'inscrire
+        </button>
+      </div>
+      <div class="cx-social">
+        <p class="social-lbl">Se connecter / S'inscrire</p>
+        <div class="social-row">
+          <button class="social-btn"><img src="images/instagram_logo.png" alt="Instagram"/></button>
+          <button class="social-btn" style="padding:12px"><img src="images/apple_logo.png" alt="Apple"/></button>
+          <button class="social-btn"><img src="images/google_logo.png" alt="Google"/></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 3 – APP OPENER
+  ══════════════════════════════════════════════════════ -->
+  <div id="opener" class="screen">
+    <div class="opener-inner">
+      <div class="opener-hero">
+        <img class="opener-img" src="images/app_opener_illustration.png" alt="ZOU app"/>
+      </div>
+      <button class="btn-letsgo" onclick="Router.go('q1')">LET'S GO !</button>
+      <div class="opener-city">
+        <img src="images/cityscape_footer.png" alt="Cityscape"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 4 – QUIZ 1 : TYPE
+  ══════════════════════════════════════════════════════ -->
+  <div id="q1" class="screen">
+    <div class="quiz-inner">
+      <div class="quiz-logo"><img src="images/zou_logo_small.png" alt="ZOU"/></div>
+      <h2 class="quiz-title">On va où ?</h2>
+      <p class="quiz-sub">Réponds en 3 taps, on s'occupe du reste.</p>
+      <div class="choice-grid">
+        <button class="choice-btn" onclick="selectChoice(this,'q1')">
+          <span class="choice-icon">🎵</span><span class="choice-label">Bar & Pub</span>
+        </button>
+        <button class="choice-btn" onclick="selectChoice(this,'q1')">
+          <span class="choice-icon">🕺</span><span class="choice-label">Cocktail & Lounge</span>
+        </button>
+        <button class="choice-btn" onclick="selectChoice(this,'q1')">
+          <span class="choice-icon">🍹</span><span class="choice-label">Club & Dansant</span>
+        </button>
+        <button class="choice-btn" onclick="selectChoice(this,'q1')">
+          <span class="choice-icon">🎲</span><span class="choice-label">Autre</span>
+        </button>
+      </div>
+      <div class="dots" style="margin:24px 0 20px">
+        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn btn-outline btn-sm quiz-prev" onclick="Router.go('opener')">Précédent</button>
+        <button class="btn btn-primary btn-sm quiz-next-btn" id="q1-next" disabled onclick="Router.go('q2')">Suivant</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 5 – QUIZ 2 : BUDGET
+  ══════════════════════════════════════════════════════ -->
+  <div id="q2" class="screen">
+    <div class="quiz-inner">
+      <div class="quiz-logo"><img src="images/zou_logo_small.png" alt="ZOU"/></div>
+      <h2 class="quiz-title">C'est quoi ton budget ?</h2>
+      <p class="quiz-sub">Réponds en 3 taps, on s'occupe du reste.</p>
+      <div class="choice-grid">
+        <button class="choice-btn" onclick="selectChoice(this,'q2')">
+          <span class="choice-icon">🆓</span><span class="choice-label">Gratuit</span>
+        </button>
+        <button class="choice-btn" onclick="selectChoice(this,'q2')">
+          <span class="choice-icon">💵</span><span class="choice-label">10 € – 20 €</span>
+        </button>
+        <button class="choice-btn" onclick="selectChoice(this,'q2')">
+          <span class="choice-icon">💵</span><span class="choice-label">30 € – 50 €</span>
+        </button>
+        <button class="choice-btn" onclick="selectChoice(this,'q2')">
+          <span class="choice-icon">💶</span><span class="choice-label">+ 50 €</span>
+        </button>
+      </div>
+      <div class="dots" style="margin:24px 0 20px">
+        <span class="dot"></span><span class="dot active"></span><span class="dot"></span>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn btn-outline btn-sm quiz-prev" onclick="Router.back()">Précédent</button>
+        <button class="btn btn-primary btn-sm quiz-next-btn" id="q2-next" disabled onclick="Router.go('q3')">Suivant</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 6 – QUIZ 3 : DISTANCE
+  ══════════════════════════════════════════════════════ -->
+  <div id="q3" class="screen">
+    <div class="quiz-inner">
+      <div class="quiz-logo"><img src="images/zou_logo_small.png" alt="ZOU"/></div>
+      <h2 class="quiz-title">T'es à quelle distance ?</h2>
+      <p class="quiz-sub">Réponds en 3 taps, on s'occupe du reste.</p>
+      <div class="choice-grid">
+        <button class="choice-btn" onclick="selectChoice(this,'q3')">
+          <span class="choice-icon">📍</span><span class="choice-label">Vers chez moi</span>
+        </button>
+        <button class="choice-btn" onclick="selectChoice(this,'q3')">
+          <span class="choice-icon">🚶</span><span class="choice-label">+ de 10 KM</span>
+        </button>
+        <button class="choice-btn" onclick="selectChoice(this,'q3')">
+          <span class="choice-icon">🏃</span><span class="choice-label">+ de 30 KM</span>
+        </button>
+        <button class="choice-btn" onclick="selectChoice(this,'q3')">
+          <span class="choice-icon">🚗</span><span class="choice-label">+ 50 KM</span>
+        </button>
+      </div>
+      <div class="dots" style="margin:24px 0 20px">
+        <span class="dot"></span><span class="dot"></span><span class="dot active"></span>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn btn-outline btn-sm quiz-prev" onclick="Router.back()">Précédent</button>
+        <button class="btn btn-primary btn-sm quiz-next-btn" id="q3-next" disabled onclick="Router.go('activites')">Suivant</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 7 – ACTIVITÉS
+  ══════════════════════════════════════════════════════ -->
+  <div id="activites" class="screen">
+    <div class="act-header">
+      <img class="act-header-logo" src="images/zou_logo_small.png" alt="ZOU"/>
+      <div class="filter-row">
+        <span class="chip chip-active">🔮 Pour toi</span>
+        <span class="chip">🎵 Concert</span>
+        <span class="chip">✖ Club</span>
+        <span class="chip">🍺 Bars</span>
+      </div>
+    </div>
+    <div class="scroll act-scroll" style="padding-bottom:160px">
+      <h1 class="act-title">CE SOIR POUR TOI ✨</h1>
+      <div id="events-list"></div>
+    </div>
+
+    <!-- ── NOTIFICATION TÉLÉPHONE (tombe du haut après 1s) ── -->
+    <div class="phone-notif" id="act-notif">
+      <div class="phone-notif-inner">
+        <div class="phone-notif-app">
+          <img src="images/zou_logo_small.png" alt="ZOU"/>
+          <span class="phone-notif-app-bolt">⚡</span>
+        </div>
+        <div class="phone-notif-body">
+          <p class="phone-notif-title">ZOU</p>
+          <p class="phone-notif-msg">Il te manque une soirée au Volta pour gagner une pinte de bière gratuite ! 🍺</p>
+          <button class="phone-notif-reserve" onclick="dismissNotif(); openEvent(1);">
+            Réserver ma place – 12 €
+          </button>
+        </div>
+        <span class="phone-notif-time">Maint</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 8 – PAGE ÉVÉNEMENT
+  ══════════════════════════════════════════════════════ -->
+  <div id="event" class="screen">
+
+    <!-- Hero photo full bleed -->
+    <div class="evp-hero">
+      <img id="evp-hero-img" src="" alt=""/>
+      <button class="evp-back" onclick="Router.back()">←</button>
+    </div>
+
+    <!-- Scrollable content + CTA inside -->
+    <div class="evp-scroll">
+      <div class="evp-content">
+
+        <!-- Title -->
+        <h2 class="evp-title" id="evp-title"></h2>
+
+        <!-- Info chips — 2 rows like figma -->
+        <div class="evp-chips" id="evp-chips"></div>
+
+        <!-- Description -->
+        <p class="evp-desc" id="evp-desc"></p>
+
+        <!-- Beer / level-up banner -->
+        <div class="evp-beer-banner">
+          <span class="bicon">🍺</span>
+          <p id="evp-warn-txt"></p>
+        </div>
+
+        <!-- XP progress banner -->
+        <div class="evp-xp-banner">
+          <p class="evp-xp-top" id="evp-xp-top"></p>
+          <p class="evp-xp-pct" id="evp-xp-pct"></p>
+          <div class="evp-xp-prog-track">
+            <div class="evp-xp-prog-fill" id="evp-prog-fill" style="width:0%"></div>
+          </div>
+          <p class="evp-xp-bottom" id="evp-prog-txt"></p>
+        </div>
+
+      </div>
+
+      <!-- CTA sticky inside scroll — always visible at bottom -->
+      <div class="evp-cta">
+        <button class="btn btn-primary" id="evp-reserve-btn" onclick="openConfirm()"></button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 9 – CONFIRMATION RÉSA
+  ══════════════════════════════════════════════════════ -->
+  <div id="confirm" class="screen">
+    <div class="cfm-inner">
+      <button class="btn btn-outline btn-sm" style="width:auto;margin-bottom:24px" onclick="Router.back()">← Retour</button>
+      <h2 class="cfm-title">Confirmer la réservation</h2>
+      <p class="cfm-sub" id="cfm-sub"></p>
+      <div class="card">
+        <div class="cfm-row">
+          <span class="cfm-label">Évènement</span>
+          <span class="cfm-value" id="cfm-event"></span>
+        </div>
+        <div class="divider"></div>
+        <div class="cfm-row">
+          <span class="cfm-label">Nombre de personnes</span>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-val" id="cfm-qty-display">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="cfm-row">
+          <span class="cfm-label">Lieu</span>
+          <span class="cfm-value" id="cfm-venue"></span>
+        </div>
+        <div class="divider"></div>
+        <div class="cfm-row">
+          <span class="cfm-label">Prix par personnes</span>
+          <span class="cfm-value" id="cfm-price-per"></span>
+        </div>
+        <div class="divider"></div>
+        <div class="cfm-row">
+          <span class="cfm-label">Date</span>
+          <span class="cfm-value" id="cfm-date"></span>
+        </div>
+      </div>
+      <div style="margin-top:auto;padding-top:32px">
+        <button class="btn btn-primary" id="cfm-btn" onclick="confirmReservation()"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 10 – VALIDATION RÉSERVATION
+  ══════════════════════════════════════════════════════ -->
+  <div id="validation" class="screen">
+    <div class="val-inner">
+
+      <!-- Pouce 3D image réelle -->
+      <div class="val-thumb-wrap" id="val-thumb">
+        <img src="images/thumbs_up.png" alt="👍" style="width:100%;height:100%;object-fit:contain;mix-blend-mode:lighten"/>
+      </div>
+
+      <h2 class="val-title">Félicitations !</h2>
+      <p class="val-sub">Tu recevra toutes les infos par e-mail<br/>à ce soir au Volta !</p>
+
+      <!-- Recap card -->
+      <div class="val-card">
+        <div class="val-row">
+          <span class="val-label">Évènement</span>
+          <span class="val-value" id="val-event"></span>
+        </div>
+        <div class="val-divider"></div>
+        <div class="val-row">
+          <span class="val-label">Lieu</span>
+          <span class="val-value" id="val-venue"></span>
+        </div>
+        <div class="val-divider"></div>
+        <div class="val-row">
+          <span class="val-label">Date</span>
+          <span class="val-value" id="val-date"></span>
+        </div>
+        <div class="val-divider"></div>
+        <div class="val-row">
+          <span class="val-label">Places</span>
+          <span class="val-value" id="val-places"></span>
+        </div>
+        <div class="val-divider"></div>
+        <div class="val-row">
+          <span class="val-label">Total</span>
+          <span class="val-value val-total-price" id="val-total"></span>
+        </div>
+      </div>
+
+      <p class="val-email" id="val-email"></p>
+
+      <button class="btn btn-primary val-profil-btn" onclick="Router.go('profil')">
+        Voir mon profil
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 11 – PROFIL
+  ══════════════════════════════════════════════════════ -->
+  <div id="profil" class="screen">
+    <div class="scroll" style="padding-bottom:90px">
+
+      <!-- Header -->
+      <div class="prf-header">
+        <div class="prf-logo"><img src="images/zou_logo_small.png" alt="ZOU"/></div>
+        <div class="prf-header-actions">
+          <button class="prf-scanner-btn" onclick="openScanner()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="18" y="18" width="3" height="3"/><rect x="14" y="14" width="3" height="3"/></svg>
+            Scanner
+          </button>
+          <button class="prf-notif-btn">
+            <img src="images/notification_icon.png" alt="Notifs"/>
+          </button>
+        </div>
+      </div>
+
+      <!-- User block — photo ronde + infos à droite -->
+      <div class="prf-user">
+        <div class="prf-avatar-wrap">
+          <img class="prf-avatar-img" src="images/profile_photo.jpg" alt="Élodie Garron"/>
+          <!-- Flèche rose comme la maquette -->
+          <div class="prf-avatar-arrow">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 32 L22 10 L28 20 L34 8 L36 34 Z" fill="#FF4DA6"/>
+              <path d="M8 32 C12 28 18 26 22 10" stroke="#FF4DA6" stroke-width="3" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+        </div>
+        <div class="prf-info">
+          <p class="prf-name">Élodie Garron</p>
+          <p class="prf-since">SUR ZOU DEPUIS JANV 2026</p>
+          <div class="prf-level-badge">
+            <span>Night Explorer – Niveau 4</span>
+            <div class="prf-level-toggle"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- XP Card — style maquette -->
+      <div class="xp-card-new">
+        <p class="xp-card-label">NIVEAU ACTUEL</p>
+        <div class="xp-card-body">
+          <div class="xp-card-left">
+            <span class="xp-card-num">4</span>
+            <span class="xp-card-title">Night Explorer</span>
+          </div>
+          <div class="xp-card-right">
+            <p class="xp-card-total">1240 XP</p>
+            <p class="xp-card-total-lbl">Total Gagné</p>
+            <p class="xp-card-next">Prochain Niveau : <strong>260 XP</strong></p>
+          </div>
+        </div>
+        <p class="xp-card-progress-lbl">1240 &nbsp;/ 1500 XP</p>
+        <div class="xp-bar-track">
+          <div class="xp-bar-fill" id="xp-fill" style="width:0%"></div>
+        </div>
+        <div class="xp-bar-minmax">
+          <span>Niv 4</span><span>Niv 5</span>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat-card"><p class="stat-val">12</p><p class="stat-lbl">SORTIES</p></div>
+        <div class="stat-card"><p class="stat-val">5</p><p class="stat-lbl">BADGES</p></div>
+        <div class="stat-card"><p class="stat-val">3</p><p class="stat-lbl">REWARD</p></div>
+        <div class="stat-card">
+          <p class="stat-val">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8 8 4 10 4 15a8 8 0 0016 0c0-5-4-7-8-13z" fill="#f97316" stroke="#ea580c" stroke-width="1"/>
+              <path d="M12 8C10 12 8 13 8 16a4 4 0 008 0c0-3-2-4-4-8z" fill="#fbbf24"/>
+            </svg>
+          </p>
+          <p class="stat-lbl">STREAK</p>
+        </div>
+      </div>
+
+      <!-- Mes Rewards -->
+      <div class="prf-section">
+        <div class="prf-sec-head">
+          <h3 class="sec-title">Mes Rewards</h3>
+          <span class="chip chip-purple">5 / 11 Débloquées</span>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="prf-section">
+        <div class="prf-sec-head">
+          <h3 class="sec-title">Badges</h3>
+          <span class="chip chip-purple">2 Disponible</span>
+        </div>
+        <div class="badges-grid">
+          <!-- Badge étoile — actif -->
+          <div class="badge-item badge-active">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="28" fill="rgba(168,85,247,.15)" stroke="#a855f7" stroke-width="2"/>
+              <text x="50%" y="68%" text-anchor="middle" font-size="28">⭐</text>
+            </svg>
+          </div>
+          <!-- Badge coeur rose — actif -->
+          <div class="badge-item badge-active">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="28" fill="rgba(168,85,247,.15)" stroke="#a855f7" stroke-width="2"/>
+              <text x="50%" y="68%" text-anchor="middle" font-size="28">🩷</text>
+            </svg>
+          </div>
+          <!-- Badge coeur rouge — actif -->
+          <div class="badge-item badge-active">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="28" fill="rgba(168,85,247,.15)" stroke="#a855f7" stroke-width="2"/>
+              <text x="50%" y="68%" text-anchor="middle" font-size="28">❤️</text>
+            </svg>
+          </div>
+          <!-- Badge feu — verrouillé -->
+          <div class="badge-item badge-locked">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="28" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.1)" stroke-width="2"/>
+              <text x="50%" y="68%" text-anchor="middle" font-size="28">🔥</text>
+            </svg>
+          </div>
+          <!-- Badge musique — verrouillé -->
+          <div class="badge-item badge-locked">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="28" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.1)" stroke-width="2"/>
+              <text x="50%" y="68%" text-anchor="middle" font-size="28">🎵</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- .scroll -->
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCANNER MODAL
+  ══════════════════════════════════════════════════════ -->
+  <div class="scanner-overlay" id="scanner-overlay" onclick="closeScanner()">
+    <div class="scanner-modal" onclick="event.stopPropagation()">
+
+      <div class="scanner-modal-header">
+        <div style="display:flex;align-items:center;gap:10px">
+          <img src="images/zou_logo_small.png" style="height:28px" alt="ZOU"/>
+          <span style="font-weight:800;font-size:16px">Scanner mon billet</span>
+        </div>
+        <button class="scanner-modal-close" onclick="closeScanner()">✕</button>
+      </div>
+
+      <p class="scanner-modal-sub">Place le QR code dans le cadre pour valider ta présence</p>
+
+      <!-- Viewfinder -->
+      <div class="scanner-vf" id="scanner-vf">
+        <!-- Camera blurred background -->
+        <div class="scanner-cam-bg"></div>
+
+        <!-- QR code SVG -->
+        <div class="scanner-qr-wrap" id="scanner-qr-wrap">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5"  y="5"  width="28" height="28" rx="3" fill="none" stroke="white" stroke-width="2.5"/>
+            <rect x="11" y="11" width="16" height="16" rx="1" fill="white"/>
+            <rect x="67" y="5"  width="28" height="28" rx="3" fill="none" stroke="white" stroke-width="2.5"/>
+            <rect x="73" y="11" width="16" height="16" rx="1" fill="white"/>
+            <rect x="5"  y="67" width="28" height="28" rx="3" fill="none" stroke="white" stroke-width="2.5"/>
+            <rect x="11" y="73" width="16" height="16" rx="1" fill="white"/>
+            <rect x="40" y="5"  width="5" height="5" rx="1" fill="white"/>
+            <rect x="50" y="5"  width="5" height="5" rx="1" fill="white"/>
+            <rect x="40" y="14" width="5" height="5" rx="1" fill="white"/>
+            <rect x="50" y="18" width="5" height="5" rx="1" fill="white"/>
+            <rect x="40" y="25" width="5" height="5" rx="1" fill="white"/>
+            <rect x="5"  y="40" width="5" height="5" rx="1" fill="white"/>
+            <rect x="14" y="45" width="5" height="5" rx="1" fill="white"/>
+            <rect x="23" y="40" width="5" height="5" rx="1" fill="white"/>
+            <rect x="40" y="40" width="5" height="5" rx="1" fill="white"/>
+            <rect x="50" y="45" width="5" height="5" rx="1" fill="white"/>
+            <rect x="60" y="40" width="5" height="5" rx="1" fill="white"/>
+            <rect x="67" y="45" width="5" height="5" rx="1" fill="white"/>
+            <rect x="78" y="40" width="5" height="5" rx="1" fill="white"/>
+            <rect x="90" y="45" width="5" height="5" rx="1" fill="white"/>
+            <rect x="40" y="55" width="5" height="5" rx="1" fill="white"/>
+            <rect x="50" y="60" width="5" height="5" rx="1" fill="white"/>
+            <rect x="60" y="55" width="5" height="5" rx="1" fill="white"/>
+            <rect x="67" y="67" width="5" height="5" rx="1" fill="white"/>
+            <rect x="78" y="72" width="5" height="5" rx="1" fill="white"/>
+            <rect x="90" y="67" width="5" height="5" rx="1" fill="white"/>
+            <rect x="40" y="78" width="5" height="5" rx="1" fill="white"/>
+            <rect x="50" y="84" width="5" height="5" rx="1" fill="white"/>
+            <rect x="30" y="67" width="5" height="5" rx="1" fill="white"/>
+            <rect x="23" y="72" width="5" height="5" rx="1" fill="white"/>
+          </svg>
+        </div>
+
+        <!-- 4 coins du cadre de scan -->
+        <div class="scan-corner c-tl"></div>
+        <div class="scan-corner c-tr"></div>
+        <div class="scan-corner c-bl"></div>
+        <div class="scan-corner c-br"></div>
+
+        <!-- Laser animé -->
+        <div class="scan-laser" id="scan-laser"></div>
+
+        <!-- Overlay succès -->
+        <div class="scan-success" id="scan-success">
+          <div class="scan-check">✓</div>
+          <p class="scan-ok-txt">Présence validée !</p>
+          <p class="scan-xp-txt">+80 XP gagnés ⚡</p>
+        </div>
+      </div>
+
+      <!-- Info billet en cours -->
+      <div class="scanner-billet-info" id="scanner-billet-info">
+        <div class="scanner-billet-chip">
+          <img src="images/zou_logo_small.png" style="width:18px;height:18px;object-fit:contain" alt=""/>
+          <span>Soirée Vinyle – Le Volta • Ce soir 21h</span>
+        </div>
+        <p class="scanner-hint">⟳ &nbsp;Scan automatique en cours…</p>
+      </div>
+
+      <!-- Après succès -->
+      <div class="scanner-done" id="scanner-done">
+        <p class="scanner-done-msg">Tu es bien enregistré pour ce soir ! 🎉</p>
+        <button class="btn btn-primary" style="margin-top:12px" onclick="closeScanner()">Fermer</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCREEN 12 – BILLETS
+  ══════════════════════════════════════════════════════ -->
+  <div id="billets" class="screen">
+    <div class="scroll" style="padding:40px 24px 100px">
+      <img src="images/zou_logo_small.png" style="height:36px;margin-bottom:28px" alt="ZOU"/>
+      <h2 style="font-size:26px;font-weight:900;margin-bottom:8px">MES BILLETS</h2>
+      <p style="color:var(--text-muted);font-size:14px;margin-bottom:24px">Retrouve ici toutes tes réservations</p>
+      
+      <div id="billet-card" class="card" style="display:none;padding:24px">
+        <div style="font-size:32px;text-align:center;margin-bottom:12px">🎫</div>
+        <p style="font-weight:800;font-size:16px;text-align:center" id="billet-name"></p>
+        <p style="color:var(--text-muted);font-size:13px;text-align:center;margin-top:8px" id="billet-info"></p>
+        <div class="divider" style="margin:16px 0"></div>
+        <p style="color:var(--purple);font-weight:800;font-size:18px;text-align:center" id="billet-total"></p>
+      </div>
+      
+      <div id="billet-empty" style="display:flex;flex-direction:column;align-items:center;padding-top:60px;gap:12px">
+        <img src="images/tickets_icon.png" style="width:80px;opacity:.4" alt="Tickets"/>
+        <p style="color:var(--text-muted);font-size:14px">Aucun billet pour l'instant</p>
+        <button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="Router.go('activites')">
+          Explorer les sorties
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCANNER MODAL
+  ══════════════════════════════════════════════════════ -->
+  <div class="scanner-overlay" id="scanner-overlay" onclick="closeScanner()">
+    <div class="scanner-modal" onclick="event.stopPropagation()">
+
+      <!-- Header -->
+      <div class="scanner-header">
+        <div class="scanner-logo"><img src="images/zou_logo_small.png" alt="ZOU"/></div>
+        <button class="scanner-close" onclick="closeScanner()">✕</button>
+      </div>
+
+      <p class="scanner-title">Scanner ton billet</p>
+      <p class="scanner-sub">Place le QR code dans le cadre pour valider ta présence</p>
+
+      <!-- Viewfinder -->
+      <div class="scanner-viewfinder" id="scanner-vf">
+        <!-- Fake camera background -->
+        <div class="scanner-camera-bg"></div>
+
+        <!-- QR Code simulé -->
+        <div class="scanner-qr" id="scanner-qr">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Top-left block -->
+            <rect x="8"  y="8"  width="34" height="34" rx="4" fill="none" stroke="white" stroke-width="3"/>
+            <rect x="15" y="15" width="20" height="20" rx="2" fill="white"/>
+            <!-- Top-right block -->
+            <rect x="78" y="8"  width="34" height="34" rx="4" fill="none" stroke="white" stroke-width="3"/>
+            <rect x="85" y="15" width="20" height="20" rx="2" fill="white"/>
+            <!-- Bottom-left block -->
+            <rect x="8"  y="78" width="34" height="34" rx="4" fill="none" stroke="white" stroke-width="3"/>
+            <rect x="15" y="85" width="20" height="20" rx="2" fill="white"/>
+            <!-- Data dots -->
+            <rect x="50" y="8"  width="6" height="6" rx="1" fill="white"/>
+            <rect x="60" y="8"  width="6" height="6" rx="1" fill="white"/>
+            <rect x="50" y="18" width="6" height="6" rx="1" fill="white"/>
+            <rect x="60" y="22" width="6" height="6" rx="1" fill="white"/>
+            <rect x="50" y="30" width="6" height="6" rx="1" fill="white"/>
+            <rect x="8"  y="50" width="6" height="6" rx="1" fill="white"/>
+            <rect x="18" y="56" width="6" height="6" rx="1" fill="white"/>
+            <rect x="28" y="50" width="6" height="6" rx="1" fill="white"/>
+            <rect x="38" y="58" width="6" height="6" rx="1" fill="white"/>
+            <rect x="50" y="50" width="6" height="6" rx="1" fill="white"/>
+            <rect x="60" y="56" width="6" height="6" rx="1" fill="white"/>
+            <rect x="70" y="50" width="6" height="6" rx="1" fill="white"/>
+            <rect x="78" y="56" width="6" height="6" rx="1" fill="white"/>
+            <rect x="90" y="50" width="6" height="6" rx="1" fill="white"/>
+            <rect x="100" y="58" width="6" height="6" rx="1" fill="white"/>
+            <rect x="110" y="50" width="6" height="6" rx="1" fill="white"/>
+            <rect x="50" y="68" width="6" height="6" rx="1" fill="white"/>
+            <rect x="60" y="74" width="6" height="6" rx="1" fill="white"/>
+            <rect x="70" y="68" width="6" height="6" rx="1" fill="white"/>
+            <rect x="80" y="78" width="6" height="6" rx="1" fill="white"/>
+            <rect x="90" y="84" width="6" height="6" rx="1" fill="white"/>
+            <rect x="100" y="78" width="6" height="6" rx="1" fill="white"/>
+            <rect x="108" y="90" width="6" height="6" rx="1" fill="white"/>
+            <rect x="50" y="90" width="6" height="6" rx="1" fill="white"/>
+            <rect x="58" y="98" width="6" height="6" rx="1" fill="white"/>
+            <rect x="38" y="78" width="6" height="6" rx="1" fill="white"/>
+            <rect x="28" y="84" width="6" height="6" rx="1" fill="white"/>
+          </svg>
+        </div>
+
+        <!-- Scan frame corners -->
+        <div class="scan-corner tl"></div>
+        <div class="scan-corner tr"></div>
+        <div class="scan-corner bl"></div>
+        <div class="scan-corner br"></div>
+
+        <!-- Laser scan line -->
+        <div class="scan-laser" id="scan-laser"></div>
+
+        <!-- Success overlay -->
+        <div class="scan-success" id="scan-success">
+          <div class="scan-success-icon">✓</div>
+          <p class="scan-success-text">Présence validée !</p>
+          <p class="scan-success-xp">+80 XP gagnés ⚡</p>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="scanner-info" id="scanner-info">
+        <div class="scanner-event-chip">
+          <img src="images/zou_logo_small.png" alt="ZOU"/>
+          <span>Soirée Vinyle – Le Volta</span>
+        </div>
+        <p class="scanner-hint">Scan automatique en cours…</p>
+      </div>
+
+      <!-- After success -->
+      <div class="scanner-done" id="scanner-done" style="display:none">
+        <p class="scanner-done-txt">Tu es bien enregistré pour ce soir ! 🎉</p>
+        <button class="btn btn-primary" onclick="closeScanner()">Fermer</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB BAR GLOBALE (fixed)
+  ══════════════════════════════════════════════════════ -->
+  <nav class="tab-bar" id="tab-bar">
+    <button class="tab-item" data-screen="activites" onclick="Router.go('activites')">
+      <img src="images/explorer_icon.png" alt="Explorer"/>
+      Explorer
+    </button>
+    <button class="tab-item" data-screen="billets" onclick="Router.go('billets')">
+      <img src="images/tickets_icon.png" alt="Billets"/>
+      Billets
+    </button>
+    <button class="tab-item" data-screen="profil" onclick="Router.go('profil')">
+      <img src="images/profile_nav_icon.png" alt="Profil"/>
+      Profil
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       NOTIFICATION BOTTOM — style iOS
+  ══════════════════════════════════════════════════════ -->
+  <div class="bottom-notif" id="bottom-notif">
+    <div class="bottom-notif-inner" style="flex-direction:column;align-items:stretch;position:relative;">
+      <button class="bottom-notif-close" onclick="hideNotif()">✕</button>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="bottom-notif-icon">🍺</div>
+        <div class="bottom-notif-body">
+          <p class="bottom-notif-app">ZOU</p>
+          <p class="bottom-notif-msg" id="notif-msg">
+            Il te manque une soirée au Volta pour gagner une pinte de bière gratuite ! 🍻
+          </p>
+        </div>
+        <span class="bottom-notif-time">Maint</span>
+      </div>
+      <button class="bottom-notif-btn" id="notif-reserve-btn" onclick="notifGoReserve()">
+        Réserver ma place – 12 €
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB BAR
+  ══════════════════════════════════════════════════════ -->
+  <div class="tab-bar" id="tab-bar">
+    <button class="tab-item active" data-screen="activites" onclick="Router.go('activites')">
+      <img src="images/tab_explore.png" alt="Explorer"/>
+      <span>Explorer</span>
+    </button>
+    <button class="tab-item" data-screen="billets" onclick="Router.go('billets')">
+      <img src="images/tab_tickets.png" alt="Billets"/>
+      <span>Billets</span>
+    </button>
+    <button class="tab-item" data-screen="profil" onclick="Router.go('profil')">
+      <img src="images/tab_profile.png" alt="Profil"/>
+      <span>Profil</span>
+    </button>
+    <button class="tab-item" data-screen="scanner" onclick="openScanner()">
+      <img src="images/tab_scanner.png" alt="Scanner"/>
+      <span>Scanner</span>
+    </button>
+  </div>
+
+</div><!-- .phone -->
+
+<!-- NOTIFICATION iOS — EN DEHORS du .phone pour éviter overflow:hidden -->
+<div class="ios-notif" id="ios-notif">
+  <div class="ios-notif-pill"></div>
+  <div class="ios-notif-row">
+    <div class="ios-notif-app-icon">
+      <img src="images/zou_logo_small.png" alt="ZOU"/>
+      <span class="ios-notif-bolt">⚡</span>
+    </div>
+    <div class="ios-notif-body">
+      <div class="ios-notif-header">
+        <span class="ios-notif-appname">ZOU</span>
+        <span class="ios-notif-time">Maintenant</span>
+      </div>
+      <p class="ios-notif-msg">Il te manque une soirée au Volta pour gagner une pinte de bière gratuite ! 🍺</p>
+    </div>
+  </div>
+  <button class="ios-notif-btn" onclick="iosNotifReserve()">
+    Réserver ma place – 12 €
+  </button>
+</div>
+
+<script src="./js/data.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
