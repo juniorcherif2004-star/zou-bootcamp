@@ -76,7 +76,7 @@
 .quiz-sub   { color:var(--text-muted); font-size:14px; margin-bottom:24px; }
 .choice-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1; align-content:start; }
 .choice-btn {
-  background:rgba(255,255,255,.04); border:2px solid rgba(255,255,255,.08);
+  background:transparent; border:2px solid rgba(255,255,255,.08);
   border-radius:var(--radius); padding:22px 12px;
   display:flex; flex-direction:column; align-items:center; gap:10px;
   cursor:pointer; transition:all .18s ease;
